@@ -1,0 +1,10 @@
+
+<select name="provinciasSelect" id="" [(ngModel)]="provinciaSeleccionada">
+    <option value="">Seleccione una opcion</option>
+    <option *ngFor="let provincia of provincias" [ngValue]="provincia">{{provincia.nombre}}</option>
+</select>
+
+<h1>Provincia Seleccionada: {{provinciaSeleccionada.nombre}}</h1>
+
+
+<button class="btn btn-info" (click)="handleOnClickButton()">Ver precios</button>
