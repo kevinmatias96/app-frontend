@@ -25,8 +25,8 @@ export class ProductosService {
           return {
             ean: parseInt(producto[0]),
             nombre: producto[1],
-            precio: parseFloat(producto[2]),
-            // precioOriginal: precio[2],
+            precio: parseFloat(precio),
+            // precioOriginal: producto[2],
           }
         })
       })
