@@ -4,15 +4,55 @@
     <p>{{producto.nombre}}</p>
     <p>{{producto.precio}}</p>
 </div> -->
-<h1>Provincia Seleccionada: {{provinciaSlctd}}</h1>
-<div class="container">
-    <div class="row">
-        <div *ngFor="let producto of productos" class="card col-sm-4 mb-2">
-            <div class="card-body">
-              <h5 class="card-title text-{{colorTitulo}}">{{producto.nombre}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{producto.ean}}</h6>
-              <p class="card-text">{{producto.precio}}</p>
+<div class="container"> 
+    <h1 class="text-center">Provincia Seleccionada: {{provinciaSlctd}}</h1>
+
+    <div class="row mb-3">
+        <div class="col-sm-8">
+            <div class="mb-3 mt-3">
+                <div>            
+                    <!-- <label for="filtroTexto" class="form-label">Buscar por Nombre o Codigo EAN</label> -->
+                    <input 
+                        [(ngModel)]="filtroTexto"
+                        (ngModelChange)="handleOnChangeFiltroTexto($event)" 
+                        type="text" 
+                        class="form-control" 
+                        id="filtroTexto"
+                        placeholder="Buscar por Nombre o Codigo EAN"
+                    >
+                </div>
             </div>
         </div>
+        <div class="col-sm-4">            
+            <input 
+                [(ngModel)] = "filtroPrecio"
+                (ngModelChange)="handleOnChangeFiltroPrecio($event)"
+                min="0"
+                [max]="precioMaximo"
+                type="range" 
+                class="form-range" 
+                id="filtroPrecio"
+            >
+            <label for="filtroPrecio" class="form-label">
+                Precio Maximo <span> {{filtroPrecio}}</span>
+            </label>
+        </div>
     </div>
+    <!-- {{precioMaximo}} -->
+    <div *ngIf="productosFiltrados.length > 0; else noHayProductosBlock" class="row">
+            <div *ngFor="let producto of productosFiltrados" class="card col-sm-3 mb-2">
+                <div class="card-body">
+                    <h5 class="card-title text-{{colorTitulo}}">{{producto.nombre}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{producto.ean}}</h6>
+                    <p class="card-text">{{producto.precio}}</p>
+                </div>
+            </div>
+    </div>    
+
+    <ng-template #noHayProductosBlock>
+        <div class="alert alert-warning" role="alert">
+            No hay productos para mostrar
+        </div>
+    </ng-template>    
 </div>
+

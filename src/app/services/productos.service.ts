@@ -11,7 +11,7 @@ export class ProductosService {
 
   getProductos(slugProvincia: string) {
     let url = './assets/api/' + slugProvincia + '.json';
-    console.log(url)
+    // console.log(url)
     return this.http.get(url)
     .pipe(
       map((data: any ) => {

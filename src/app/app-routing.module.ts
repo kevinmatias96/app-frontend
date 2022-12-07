@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { P404Component } from './p404/p404.component';
 import { ProductosListComponent } from './productos-list/productos-list.component';
 import { ProvinciasSelectComponent } from './provincias-select/provincias-select.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProvinciasSelectComponent,
+    component: HomeComponent,
   },
   {
     path: 'productos',
@@ -19,6 +21,10 @@ const routes: Routes = [
   {
     path: 'provincias/:nombreProvincia/productos',
     component: ProductosListComponent,
+  },
+  {
+    path: '**',
+    component: P404Component,
   },
 ];
 
